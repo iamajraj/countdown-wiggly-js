@@ -10,16 +10,32 @@ for (let i = 0; i < 10; i++) {
 let currentFrame = 0;
 let min = 0;
 let seconds = 0;
-
-startBtn.onclick = () => {
-  startCountDown();
-};
-
+let isPaused = false;
 let animationInterval;
 let counterInterval;
 
+startBtn.onclick = () => {
+  if (!isPaused && !(seconds > 0)) {
+    seconds = secondsCountdown.value;
+  }
+  startCountDown();
+};
+
+resetBtn.onclick = () => {
+  isPaused = false;
+  secondsCountdown.value = 0;
+  clearInterval(animationInterval);
+  clearInterval(counterInterval);
+  showAnimation(0, [min1, min2]); // from id
+  showAnimation(0, [second1, second2]); // from id
+};
+
+stopBtn.onclick = () => {
+  clearInterval(animationInterval);
+  clearInterval(counterInterval);
+};
+
 function startCountDown() {
-  seconds = secondsCountdown.value;
   min = 0;
   if (seconds > 60) {
     min = (seconds / 60).toFixed(0);
