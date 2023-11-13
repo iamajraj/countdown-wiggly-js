@@ -8,15 +8,21 @@
     <script defer src="script.js"></script>
   </head>
   <body>
+    <h1 class="title">Countdown</h1>
     <div class="main">
-      <img id="min1" src="assets/0_0.png" width="300" height="300" />
-      <img id="min2" src="assets/0_1.png" width="300" height="300" />
+      <img id="min1" src="assets/0_0.png" width="200" height="200" />
+      <img id="min2" src="assets/0_1.png" width="200" height="200" />
       <p>:</p>
-      <img id="second1" src="assets/0_0.png" width="300" height="300" />
-      <img id="second2" src="assets/0_1.png" width="300" height="300" />
+      <img id="second1" src="assets/0_0.png" width="200" height="200" />
+      <img id="second2" src="assets/0_1.png" width="200" height="200" />
     </div>
-    <p>Enter number in seconds:</p>
-    <input type="number" id="secondsCountdown" />
-    <button id="startBtn">Start</button>
+    <div class="controls">
+      <p>Enter number in seconds:</p>
+      <input type="number" id="secondsCountdown" />
+      <div class="btns">
+        <button id="startBtn">Start</button>
+        <button id="stopBtn">Stop</button>
+      </div>
+    </div>
   </body>
 </html>
