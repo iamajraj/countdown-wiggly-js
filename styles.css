@@ -15,12 +15,13 @@ body {
 }
 
 .main {
+  position: relative;
   display: flex;
   gap: 4px;
   align-items: center;
   justify-content: center;
 }
-.main p {
+.main .divider {
   font-size: 100px;
 }
 .controls {
@@ -64,4 +65,26 @@ body {
 
 .btns #resetBtn {
   background-color: teal;
+}
+
+#loader {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  z-index: 99;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+#loader p {
+  background-color: white;
+  padding: 10px 40px;
+  border-radius: 20px;
+}
+
+#loader #loaderPercentage {
+  padding-inline: 20px;
 }

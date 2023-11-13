@@ -1,9 +1,21 @@
 let images = {};
+let loadedImage = 0;
 
 for (let i = 0; i < 10; i++) {
   images[i] = [];
   for (let j = 0; j < 2; j++) {
-    images[String(i)].push(`assets/${i}_${j}.png`);
+    const src = `assets/${i}_${j}.png`;
+    let image = new Image();
+    image.src = src;
+    image.onload = () => {
+      loadedImage += 1;
+      loaderPercentage.textContent =
+        Math.round(Math.floor((loadedImage / 20) * 100)) + '%';
+      if (loadedImage === 20) {
+        loader.style.display = 'none';
+      }
+    };
+    images[String(i)].push(src);
   }
 }
 
@@ -16,6 +28,9 @@ let animationInterval;
 let counterInterval;
 
 startBtn.onclick = () => {
+  if (loadedImage < 20) {
+    return;
+  }
   if (!isPaused) {
     seconds = Number(secondsCountdown.value);
   }
@@ -30,6 +45,9 @@ startBtn.onclick = () => {
 };
 
 resetBtn.onclick = () => {
+  if (loadedImage < 20) {
+    return;
+  }
   isPaused = false;
   isPlaying = false;
   seconds = 0;
@@ -42,6 +60,9 @@ resetBtn.onclick = () => {
 };
 
 stopBtn.onclick = () => {
+  if (loadedImage < 20) {
+    return;
+  }
   if (isPlaying && !isPaused) {
     clearInterval(animationInterval);
     clearInterval(counterInterval);
