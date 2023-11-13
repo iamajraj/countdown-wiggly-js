@@ -10,20 +10,31 @@ for (let i = 0; i < 10; i++) {
 let currentFrame = 0;
 let min = 0;
 let seconds = 0;
+let isPlaying = false;
 let isPaused = false;
 let animationInterval;
 let counterInterval;
 
 startBtn.onclick = () => {
-  if (!isPaused && !(seconds > 0)) {
-    seconds = secondsCountdown.value;
+  if (!isPaused) {
+    seconds = Number(secondsCountdown.value);
   }
+  if (seconds === 0) {
+    alert("You haven't entered any number yet.");
+    return;
+  }
+  isPlaying = true;
+  isPaused = false;
+  startBtn.textContent = 'Start';
   startCountDown();
 };
 
 resetBtn.onclick = () => {
   isPaused = false;
+  isPlaying = false;
+  seconds = 0;
   secondsCountdown.value = 0;
+  startBtn.textContent = 'Start';
   clearInterval(animationInterval);
   clearInterval(counterInterval);
   showAnimation(0, [min1, min2]); // from id
@@ -31,8 +42,15 @@ resetBtn.onclick = () => {
 };
 
 stopBtn.onclick = () => {
-  clearInterval(animationInterval);
-  clearInterval(counterInterval);
+  if (isPlaying && !isPaused) {
+    clearInterval(animationInterval);
+    clearInterval(counterInterval);
+    startBtn.textContent = 'Resume';
+    isPaused = true;
+    isPlaying = false;
+  } else {
+    alert('Please start first');
+  }
 };
 
 function startCountDown() {
