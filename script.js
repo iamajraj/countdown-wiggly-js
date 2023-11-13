@@ -15,7 +15,7 @@ startBtn.onclick = () => {
   startCountDown();
 };
 
-let animInterval;
+let animationInterval;
 let counterInterval;
 
 function startCountDown() {
@@ -26,9 +26,14 @@ function startCountDown() {
     seconds = seconds % 60;
   }
 
-  animInterval = setInterval(() => {
-    showAnimation(min, [min1, min2]);
-    showAnimation(seconds, [second1, second2]);
+  // run once before the animation interval
+  showAnimation(min, [min1, min2]); // from id
+  showAnimation(seconds, [second1, second2]); // from id
+  currentFrame = 1;
+
+  animationInterval = setInterval(() => {
+    showAnimation(min, [min1, min2]); // from id
+    showAnimation(seconds, [second1, second2]); // from id
     currentFrame = currentFrame === 0 ? 1 : 0;
   }, 700);
 
@@ -37,7 +42,7 @@ function startCountDown() {
       if (min === 0) {
         console.log('min', min);
         clearInterval(counterInterval);
-        clearInterval(animInterval);
+        clearInterval(animationInterval);
         alert('Countdown finished');
       } else {
         min--;
