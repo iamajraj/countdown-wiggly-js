@@ -19,6 +19,7 @@ for (let i = 0; i < 10; i++) {
   }
 }
 
+const ANIMATION_INTERVAL_MS_SECOND = 500; // in milliseconds
 let currentFrame = 0;
 let min = 0;
 let seconds = 0;
@@ -33,6 +34,7 @@ startBtn.onclick = () => {
   }
   if (!isPaused) {
     seconds = Number(secondsCountdown.value);
+    min = 0;
   }
   if (seconds === 0) {
     alert("You haven't entered any number yet.");
@@ -75,7 +77,6 @@ stopBtn.onclick = () => {
 };
 
 function startCountDown() {
-  min = 0;
   if (seconds > 60) {
     min = (seconds / 60).toFixed(0);
     seconds = seconds % 60;
@@ -90,7 +91,7 @@ function startCountDown() {
     showAnimation(min, [min1, min2]); // from id
     showAnimation(seconds, [second1, second2]); // from id
     currentFrame = currentFrame === 0 ? 1 : 0;
-  }, 700);
+  }, ANIMATION_INTERVAL_MS_SECOND);
 
   counterInterval = setInterval(() => {
     if (seconds === 0) {
